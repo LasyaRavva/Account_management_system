@@ -48,7 +48,9 @@ export const getStatement = async (req, res) => {
     const { data: transactions, error } = await supabase
       .from('transactions')
       .select('id, transfer_ref, sender_id, receiver_id, amount, transaction_type, balance_after_transaction, created_at')
-      .or(`sender_id.eq.${req.user.userId},receiver_id.eq.${req.user.userId}`)
+      .or(
+        `and(sender_id.eq.${req.user.userId},transaction_type.eq.debit),and(receiver_id.eq.${req.user.userId},transaction_type.eq.credit)`,
+      )
       .order('created_at', { ascending: false })
 
     if (error) {

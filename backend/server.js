@@ -1,6 +1,8 @@
 import cors from 'cors'
 import dotenv from 'dotenv'
 import express from 'express'
+import { getUsers } from './controllers/accountController.js'
+import { authenticateToken } from './middlewares/authMiddleware.js'
 import authRoutes from './routes/authRoutes.js'
 import accountRoutes from './routes/accountRoutes.js'
 
@@ -21,6 +23,7 @@ app.get('/api/health', (req, res) => {
 })
 
 app.use('/api/auth', authRoutes)
+app.get('/api/users', authenticateToken, getUsers)
 app.use('/api/account', accountRoutes)
 
 app.use((req, res) => {
