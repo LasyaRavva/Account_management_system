@@ -18,7 +18,7 @@ const SendMoneyPage = () => {
       setError('')
 
       try {
-        const response = await api.get('/account/users')
+        const response = await api.get('/users')
         setUsers(response.data.users)
       } catch (requestError) {
         setError(requestError.response?.data?.message || 'Unable to load registered users.')

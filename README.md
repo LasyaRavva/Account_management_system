@@ -76,7 +76,7 @@ npm run dev
 - `GET /api/account/balance`
 - `GET /api/account/statement`
 - `POST /api/account/transfer`
-- `GET /api/account/users`
+- `GET /api/users`
 
 ## Transfer Logic
 
